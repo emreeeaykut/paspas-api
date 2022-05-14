@@ -1,4 +1,4 @@
-const baseUrl = __dirname + '/src';
+const baseUrl = __dirname + '/src'
 
 export default [
   {
@@ -11,6 +11,9 @@ export default [
     database: process.env.DB_NAME,
     synchronize: true,
     logging: false,
+    ssl: {
+      rejectUnauthorized: false,
+    },
     entities: [`${baseUrl}/entities/**/*{.ts,.js}`],
     migrations: [`${baseUrl}/database/migrations/**/*{.ts,.js}`],
     subscribers: [`${baseUrl}/database/subscribers/**/*{.ts,.js}`],
@@ -19,7 +22,7 @@ export default [
     cli: {
       entitiesDir: 'src/entities/',
       migrationsDir: 'src/database/migrations/',
-      subscribersDir: 'src/database/subscribers/'
-    }
-  }
-];
+      subscribersDir: 'src/database/subscribers/',
+    },
+  },
+]
