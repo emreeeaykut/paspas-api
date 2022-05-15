@@ -3,20 +3,19 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
-# Base entity
-type BaseEntity {
-  # Created date
-  createdAt: Timestamp!
+type Query {
+  # Get all posts
+  posts: [Post!]!
 
-  # Last update date
-  updatedAt: Timestamp!
+  # Get post by id
+  post(id: Float!): Post!
 
-  # Is active
-  isActive: Boolean!
+  # Get all categorys
+  categorys: [Category!]!
+
+  # Get category by id
+  category(id: Float!): Category!
 }
-
-# The javascript `Date` as integer. Type represents date and time as number of milliseconds from start of UNIX epoch.
-scalar Timestamp
 
 # Post entity
 type Post {
@@ -45,6 +44,9 @@ type Post {
   category: Category!
 }
 
+# The javascript `Date` as integer. Type represents date and time as number of milliseconds from start of UNIX epoch.
+scalar Timestamp
+
 # Category entity
 type Category {
   # Created date
@@ -66,13 +68,24 @@ type Category {
   posts: [Post!]!
 }
 
-# Category input
-input CategoryInput {
-  # Category title
-  title: String!
+type Mutation {
+  # Create post
+  createPost(data: PostInput!): Post!
 
-  # Category is active
-  isActive: Boolean
+  # Update post
+  updatePost(data: PostInput!, id: Float!): Post!
+
+  # Delete post
+  deletePost(id: Float!): Post!
+
+  # Create category
+  createCategory(data: CategoryInput!): Category!
+
+  # Update category
+  updateCategory(data: CategoryInput!, id: Float!): Category!
+
+  # Delete category
+  deleteCategory(id: Float!): Category!
 }
 
 # Post input
@@ -93,36 +106,11 @@ input PostInput {
   categoryId: Float!
 }
 
-type Query {
-  # Get all categorys
-  categorys: [Category!]!
+# Category input
+input CategoryInput {
+  # Category title
+  title: String!
 
-  # Get category by id
-  category(id: Float!): Category!
-
-  # Get all posts
-  posts: [Post!]!
-
-  # Get post by id
-  post(id: Float!): Post!
-}
-
-type Mutation {
-  # Create category
-  createCategory(data: CategoryInput!): Category!
-
-  # Update category
-  updateCategory(data: CategoryInput!, id: Float!): Category!
-
-  # Delete category
-  deleteCategory(id: Float!): Category!
-
-  # Create post
-  createPost(data: PostInput!): Post!
-
-  # Update post
-  updatePost(data: PostInput!, id: Float!): Post!
-
-  # Delete post
-  deletePost(id: Float!): Post!
+  # Category is active
+  isActive: Boolean
 }
