@@ -8,6 +8,7 @@ import apollo from './apollo'
 import { Logger } from './utils'
 import { databaseConnection } from '@config/database'
 import { graphqlUploadExpress } from 'graphql-upload'
+import { join } from 'path'
 
 const app = express()
 
@@ -28,6 +29,8 @@ app.use(
 app.use(express.json())
 
 app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }))
+
+app.use(express.static(join(__dirname, './uploads')))
 
 const prepareServer = async () => {
   try {
