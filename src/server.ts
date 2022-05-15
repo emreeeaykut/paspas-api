@@ -30,7 +30,7 @@ app.use(express.json())
 
 app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }))
 
-app.use(express.static(join(__dirname, './uploads')))
+app.use('/uploads', express.static(join(__dirname, './uploads')))
 
 const prepareServer = async () => {
   try {
