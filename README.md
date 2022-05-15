@@ -22,6 +22,7 @@ query {
     title
     description
     content
+    img
     isActive
     createdAt
     updatedAt
@@ -45,6 +46,7 @@ query {
     title
     description
     content
+    img
     isActive
     createdAt
     updatedAt
@@ -62,29 +64,6 @@ query {
 - Create post
 
 ```graphql
-mutation {
-  createPost(data: { title: "Post 1", description: "Description 1", content: "Content 1", categoryId: 1 }) {
-    id
-    title
-    description
-    content
-    isActive
-    createdAt
-    updatedAt
-    category {
-      id
-      title
-      isActive
-      createdAt
-      updatedAt
-    }
-  }
-}
-```
-
-- Create post with file
-
-```graphql
 mutation ($file: Upload!) {
   createPost(
     file: $file
@@ -94,6 +73,7 @@ mutation ($file: Upload!) {
     title
     description
     content
+    img
     isActive
     createdAt
     updatedAt
@@ -125,6 +105,7 @@ mutation {
     title
     description
     content
+    img
     isActive
     createdAt
     updatedAt
@@ -148,6 +129,7 @@ mutation {
     title
     description
     content
+    img
     isActive
     createdAt
     updatedAt
