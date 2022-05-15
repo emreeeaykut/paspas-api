@@ -82,6 +82,32 @@ mutation {
 }
 ```
 
+- Create post with file
+
+```graphql
+mutation ($file: Upload!) {
+  createPost(
+    file: $file
+    data: { title: "Post 1", description: "Description 1", content: "Content 1", categoryId: 1 }
+  ) {
+    id
+    title
+    description
+    content
+    isActive
+    createdAt
+    updatedAt
+    category {
+      id
+      title
+      isActive
+      createdAt
+      updatedAt
+    }
+  }
+}
+```
+
 - Update post
 
 ```graphql
