@@ -27,4 +27,8 @@ export class Post extends BaseEntity {
   category!: Category
   @RelationId((post: Post) => post.category)
   categoryId!: number
+
+  @Field(() => String, { description: 'Post image url', nullable: true })
+  @Column({ nullable: true })
+  img?: string
 }

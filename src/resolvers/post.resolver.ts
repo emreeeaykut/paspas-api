@@ -2,7 +2,9 @@ import { Arg, Mutation, Query, Resolver } from 'type-graphql'
 import { PostService } from '@services/post.service'
 import { Post } from '@entities/post.entity'
 import { PostInput } from '@inputs/post.input'
-
+import { FileUpload, GraphQLUpload } from 'graphql-upload'
+import { join, parse } from 'path'
+import { createWriteStream } from 'fs'
 @Resolver(() => Post)
 export class PostResolver {
   constructor(private readonly postService: PostService) {}
@@ -18,7 +20,26 @@ export class PostResolver {
   }
 
   @Mutation(() => Post, { description: 'Create post' })
-  public async createPost(@Arg('data') data: PostInput): Promise<Post> {
+  public async createPost(
+    @Arg('file', () => GraphQLUpload) { createReadStream, filename }: FileUpload,
+    @Arg('data') data: PostInput
+  ): Promise<Post> {
+    let stream = createReadStream()
+
+    const { ext, name } = parse(filename)
+
+    const newName = name.replace(/([^a-z0-9 ]+)/gi, '-').replace(' ', '_') + '-' + Date.now() + ext
+
+    const serverFile = join(__dirname, `/../uploads/${newName}`)
+
+    let writeStream = createWriteStream(serverFile)
+
+    stream.pipe(writeStream)
+
+    const imgUrl = `/uploads/${newName}`
+
+    data.img = imgUrl
+
     return await this.postService.create(data)
   }
 

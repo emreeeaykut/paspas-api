@@ -42,6 +42,9 @@ type Post {
 
   # Category of the post
   category: Category!
+
+  # Post image url
+  img: String
 }
 
 # The javascript `Date` as integer. Type represents date and time as number of milliseconds from start of UNIX epoch.
@@ -70,7 +73,7 @@ type Category {
 
 type Mutation {
   # Create post
-  createPost(data: PostInput!): Post!
+  createPost(data: PostInput!, file: Upload!): Post!
 
   # Update post
   updatePost(data: PostInput!, id: Float!): Post!
@@ -104,7 +107,13 @@ input PostInput {
 
   # Post category id
   categoryId: Float!
+
+  # Post image url
+  img: String
 }
+
+# The `Upload` scalar type represents a file upload.
+scalar Upload
 
 # Category input
 input CategoryInput {

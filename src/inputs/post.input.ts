@@ -20,4 +20,7 @@ export class PostInput implements Partial<Post> {
 
   @Field(() => Number, { description: 'Post category id' })
   categoryId!: number
+
+  @Field({ description: 'Post image url', nullable: true })
+  img?: string
 }

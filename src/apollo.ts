@@ -26,6 +26,7 @@ export default async () => {
 
   const apolloServer = new ApolloServer({
     schema,
+    csrfPrevention: true,
     introspection: common.env !== 'production',
     plugins: [
       common.env === 'production'
