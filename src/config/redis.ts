@@ -1,10 +1,6 @@
-import Redis from 'ioredis';
+import Redis from 'ioredis'
+import common from './common'
 
-const redis = new Redis({
-  host: process.env.REDIS_HOST,
-  port: Number(process.env.REDIS_PORT),
-  username: process.env.REDIS_USER,
-  password: process.env.REDIS_PASS
-});
+const redis = new Redis(`rediss://:${common.redisPass}@${common.redisHost}:${common.redisPort}`)
 
-export default redis;
+export default redis
