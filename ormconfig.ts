@@ -1,4 +1,4 @@
-const baseUrl = __dirname + '/src'
+const baseUrl = process.env.NODE_ENV === 'development' ? __dirname + '/src' : __dirname + '/dist'
 
 export default [
   {

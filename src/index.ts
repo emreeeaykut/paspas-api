@@ -1,4 +1,5 @@
 require('dotenv').config()
+import 'module-alias/register'
 import common from '@config/common'
 import server from './server'
 import { Logger } from './utils'

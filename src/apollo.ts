@@ -8,12 +8,14 @@ import { ApolloServer } from 'apollo-server-express'
 import { buildSchema } from 'type-graphql'
 import { useContainer } from 'typeorm'
 import { Container } from 'typeorm-typedi-extensions'
+import { PostResolver } from '@resolvers/post.resolver'
+import { CategoryResolver } from '@resolvers/category.resolver'
 
 export default async () => {
   useContainer(Container)
 
   const schema = await buildSchema({
-    resolvers: [`${__dirname}/resolvers/**/*.resolver.ts`],
+    resolvers: [PostResolver, CategoryResolver],
     emitSchemaFile: {
       path: __dirname + '/schema/schema.gql',
       commentDescriptions: true,

@@ -14,6 +14,8 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
+    "allowJs": true,
+    "noImplicitAny": false,
     "paths": {
       "@config/*": ["src/config/*"],
       "@migrations/*": ["src/database/migrations/*"],
