@@ -1,7 +1,7 @@
 import { MiddlewareFn } from 'type-graphql'
 import { verify } from 'jsonwebtoken'
-import { AuthContext } from 'src/contexts/auth.context'
 import common from '@config/common'
+import { AuthContext } from '@contexts/auth.context'
 
 export const isAuth: MiddlewareFn<AuthContext> = ({ context }, next) => {
   const auth = context.req.headers['authorization']

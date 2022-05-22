@@ -10,8 +10,8 @@ type Query {
   # Get post by id
   post(id: Float!): Post!
 
-  # Get all categorys
-  categorys: [Category!]!
+  # Get all categories
+  categories: [Category!]!
 
   # Get category by id
   category(id: Float!): Category!

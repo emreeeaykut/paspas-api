@@ -27,7 +27,11 @@
       "@repositories/*": ["src/repositories/*"],
       "@resolvers/*": ["src/resolvers/*"],
       "@services/*": ["src/services/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@contexts/*": ["src/contexts/*"],
+      "@middlewares/*": ["src/middlewares/*"],
+      "@dtos/*": ["src/dtos/*"],
+      "@mappers/*": ["src/mappers/*"]
     }
   },
   "exclude": ["node_modules"],

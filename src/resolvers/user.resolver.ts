@@ -2,9 +2,9 @@ import { Arg, Ctx, Mutation, Query, Resolver, UseMiddleware } from 'type-graphql
 import { UserService } from '@services/user.service'
 import { User } from '@entities/user.entity'
 import { UserInput, UserRegisterInput, UserLoginInput } from '@inputs/user.input'
-import { isAuth } from 'src/middlewares/is-auth.middleware'
-import { AuthContext } from 'src/contexts/auth.context'
-import { UserLoginResponseDto, UserRegisterResponseDto } from 'src/dtos/user.dto'
+import { UserLoginResponseDto, UserRegisterResponseDto } from '@dtos/user.dto'
+import { AuthContext } from '@contexts/auth.context'
+import { isAuth } from '@middlewares/is-auth.middleware'
 
 @Resolver(() => User)
 export class UserResolver {

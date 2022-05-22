@@ -33,7 +33,11 @@
     "@repositories": "dist/repositories",
     "@resolvers": "dist/resolvers",
     "@services": "dist/services",
-    "@utils": "dist/utils"
+    "@utils": "dist/utils",
+    "@contexts": "dist/contexts",
+    "@middlewares": "dist/middlewares",
+    "@dtos": "dist/dtos",
+    "@mappers": "dist/mappers"
   },
   "dependencies": {
     "apollo-server-core": "^3.6.7",

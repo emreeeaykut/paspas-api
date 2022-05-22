@@ -3,7 +3,7 @@ import { InjectRepository } from 'typeorm-typedi-extensions'
 import { User } from '@entities/user.entity'
 import { UserRepository } from '@repositories/user.repository'
 import { Response } from 'express'
-import { UserRegisterResponseDto } from 'src/dtos/user.dto'
+import { UserRegisterResponseDto } from '@dtos/user.dto'
 import { compare, hash } from 'bcryptjs'
 import { createAccessToken, createRefreshToken, setRefreshtoken } from '@utils/auth.util'
 
