@@ -2,7 +2,7 @@ require('dotenv').config()
 // import 'module-alias/register'
 import common from '@config/common'
 import server from './server'
-import { Logger } from './utils'
+import logger from './utils/logger.util'
 
 const bootstrap = async () => {
   try {
@@ -12,9 +12,9 @@ const bootstrap = async () => {
         throw new Error(err)
       })
 
-    Logger.info(`GraphQL server is running on ${common.host}:${common.port}${common.graphqlPath}`)
+    logger.info(`GraphQL server is running on ${common.host}:${common.port}${common.graphqlPath}`)
   } catch (err) {
-    Logger.error('app-error: ', err)
+    logger.error('app-error: ', err)
   }
 }
 

@@ -6,4 +6,8 @@ export default {
   redisHost: process.env.REDIS_HOST,
   redisPort: process.env.REDIS_PORT,
   redisPass: process.env.REDIS_PASS,
+  accessTokenSecret: process.env.ACCESS_TOKEN_SECRET,
+  refreshTokenSecret: process.env.REFRESH_TOKEN_SECRET,
+  accessTokenExpiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN,
+  refreshTokenExpiresIn: process.env.REFRESH_TOKEN_EXPIRES_IN,
 }

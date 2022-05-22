@@ -213,3 +213,161 @@ mutation {
   }
 }
 ```
+
+- Get all users
+
+```graphql
+query {
+  users {
+    id
+    email
+    password
+    username
+    firstname
+    lastname
+    isActive
+    createdAt
+    updatedAt
+  }
+}
+```
+
+- Get user by id
+
+```graphql
+query {
+  user(id: 1) {
+    id
+    email
+    password
+    username
+    firstname
+    lastname
+    isActive
+    createdAt
+    updatedAt
+  }
+}
+```
+
+- Create user
+
+```graphql
+mutation {
+  createUser(
+    data: { email: "test@test.com", password: "123123", username: "test", firstname: "test", lastname: "test" }
+  ) {
+    id
+    email
+    password
+    username
+    firstname
+    lastname
+    isActive
+    createdAt
+    updatedAt
+  }
+}
+```
+
+- Update user
+
+```graphql
+mutation {
+  updateUser(
+    id: 1
+    data: { email: "test-edit@test.com", password: "123123", username: "test", firstname: "test", lastname: "test" }
+  ) {
+    id
+    email
+    password
+    username
+    firstname
+    lastname
+    isActive
+    createdAt
+    updatedAt
+  }
+}
+```
+
+- Delete user
+
+```graphql
+mutation {
+  deleteUser(id: 1) {
+    id
+    email
+    password
+    username
+    firstname
+    lastname
+    isActive
+    createdAt
+    updatedAt
+  }
+}
+```
+
+- Register user
+
+```graphql
+mutation {
+  registerUser(
+    data: { email: "test@test.com", password: "123123", username: "test", firstname: "test", lastname: "test" }
+  ) {
+    accessToken
+    user {
+      id
+      email
+      username
+      firstname
+      lastname
+    }
+  }
+}
+```
+
+- Login user
+
+```graphql
+mutation {
+  loginUser(data: { email: "test@test.com", password: "123123" }) {
+    accessToken
+    user {
+      id
+      email
+      username
+      firstname
+      lastname
+    }
+  }
+}
+```
+
+- Logout user
+
+```graphql
+mutation {
+  logout
+}
+```
+
+- Info user
+
+```graphql
+query {
+  infoUser {
+    id
+    email
+    username
+    firstname
+    lastname
+    isActive
+  }
+}
+
+{
+  "authorization": "bearer <your access token>"
+}
+```

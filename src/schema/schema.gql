@@ -15,6 +15,15 @@ type Query {
 
   # Get category by id
   category(id: Float!): Category!
+
+  # Get all users
+  users: [User!]!
+
+  # Get user by id
+  user(id: Float!): User!
+
+  # Get user info with context
+  infoUser: User!
 }
 
 # Post entity
@@ -71,6 +80,36 @@ type Category {
   posts: [Post!]!
 }
 
+# User entity
+type User {
+  # Created date
+  createdAt: Timestamp!
+
+  # Last update date
+  updatedAt: Timestamp!
+
+  # Is active
+  isActive: Boolean!
+
+  # User id
+  id: ID!
+
+  # User email
+  email: String!
+
+  # User password
+  password: String!
+
+  # User username
+  username: String!
+
+  # User firstname
+  firstname: String!
+
+  # User lastname
+  lastname: String!
+}
+
 type Mutation {
   # Create post
   createPost(data: PostInput!, file: Upload!): Post!
@@ -89,6 +128,24 @@ type Mutation {
 
   # Delete category
   deleteCategory(id: Float!): Category!
+
+  # Create user
+  createUser(data: UserInput!): User!
+
+  # Update user
+  updateUser(data: UserInput!, id: Float!): User!
+
+  # Delete user
+  deleteUser(id: Float!): User!
+
+  # Register user
+  registerUser(data: UserRegisterInput!): UserRegisterResponseDto!
+
+  # Login user
+  loginUser(data: UserLoginInput!): UserLoginResponseDto!
+
+  # Logout user
+  logoutUser: Boolean!
 }
 
 # Post input
@@ -122,4 +179,70 @@ input CategoryInput {
 
   # Category is active
   isActive: Boolean
+}
+
+# User register input
+input UserInput {
+  # User email
+  email: String!
+
+  # User password
+  password: String!
+
+  # User username
+  username: String!
+
+  # User firstname
+  firstname: String!
+
+  # User lastname
+  lastname: String!
+
+  # User is active
+  isActive: Boolean
+}
+
+# User register response dto
+type UserRegisterResponseDto {
+  # User register acces token
+  accessToken: String!
+
+  # User register user
+  user: User!
+}
+
+# User register input
+input UserRegisterInput {
+  # User email
+  email: String!
+
+  # User password
+  password: String!
+
+  # User username
+  username: String!
+
+  # User firstname
+  firstname: String!
+
+  # User lastname
+  lastname: String!
+}
+
+# User login response dto
+type UserLoginResponseDto {
+  # User login acces token
+  accessToken: String!
+
+  # User login user
+  user: User!
+}
+
+# User login input
+input UserLoginInput {
+  # User email
+  email: String!
+
+  # User password
+  password: String!
 }
