@@ -1,6 +1,5 @@
 import { Service } from 'typedi'
 import { InjectRepository } from 'typeorm-typedi-extensions'
-import { Category } from '@entities/category.entity'
 import { CategoryRepository } from '@repositories/category.repository'
 import { CategoryResponseDto } from 'src/dtos/category.dto'
 import { CategoryMapper } from 'src/mappers/category.mapper'

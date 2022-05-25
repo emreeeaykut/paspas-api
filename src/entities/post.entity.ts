@@ -26,7 +26,7 @@ export class Post extends BaseEntity {
   @ManyToOne(() => Category, category => category.posts)
   category!: Category
   @RelationId((post: Post) => post.category)
-  categoryId!: number
+  categoryId?: number
 
   @Field(() => String, { description: 'Post image url', nullable: true })
   @Column({ nullable: true })

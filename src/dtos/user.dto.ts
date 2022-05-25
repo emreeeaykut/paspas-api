@@ -1,5 +1,32 @@
 import { User } from '@entities/user.entity'
-import { Field, ObjectType } from 'type-graphql'
+import { Field, GraphQLTimestamp, ObjectType } from 'type-graphql'
+
+@ObjectType({ description: 'User response dto' })
+export class UserResponseDto {
+  @Field(() => String, { description: 'User id' })
+  id!: number
+
+  @Field(() => String, { description: 'User email' })
+  email!: string
+
+  @Field(() => String, { description: 'User username' })
+  username!: string
+
+  @Field(() => String, { description: 'User firstname' })
+  firstname!: string
+
+  @Field(() => String, { description: 'User lastname' })
+  lastname!: string
+
+  @Field(() => GraphQLTimestamp, { description: 'User created date' })
+  createdAt!: Date
+
+  @Field(() => GraphQLTimestamp, { description: 'User last update date' })
+  updatedAt!: Date
+
+  @Field(() => Boolean, { description: 'User is active' })
+  isActive!: boolean
+}
 
 @ObjectType({ description: 'User register response dto' })
 export class UserRegisterResponseDto {

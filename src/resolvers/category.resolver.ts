@@ -9,7 +9,7 @@ export class CategoryResolver {
   constructor(private readonly categoryService: CategoryService) {}
 
   @Query(() => [Category], { description: 'Get all categories' })
-  public async categories(): Promise<Category[]> {
+  public async categories(): Promise<CategoryResponseDto[]> {
     return await this.categoryService.getAll()
   }
 
@@ -19,17 +19,17 @@ export class CategoryResolver {
   }
 
   @Mutation(() => Category, { description: 'Create category' })
-  public async createCategory(@Arg('data') data: CategoryInput): Promise<Category> {
+  public async createCategory(@Arg('data') data: CategoryInput): Promise<CategoryResponseDto> {
     return await this.categoryService.create(data)
   }
 
   @Mutation(() => Category, { description: 'Update category' })
-  public async updateCategory(@Arg('id') id: number, @Arg('data') data: CategoryInput): Promise<Category> {
+  public async updateCategory(@Arg('id') id: number, @Arg('data') data: CategoryInput): Promise<CategoryResponseDto> {
     return await this.categoryService.update(id, data)
   }
 
   @Mutation(() => Category, { description: 'Delete category' })
-  public async deleteCategory(@Arg('id') id: number): Promise<Category> {
+  public async deleteCategory(@Arg('id') id: number): Promise<CategoryResponseDto> {
     return await this.categoryService.delete(id)
   }
 }

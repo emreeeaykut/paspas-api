@@ -5,17 +5,18 @@ import { PostInput } from '@inputs/post.input'
 import { FileUpload, GraphQLUpload } from 'graphql-upload'
 import { join, parse } from 'path'
 import { createWriteStream } from 'fs'
+import { PostResponseDto } from '@dtos/post.dto'
 @Resolver(() => Post)
 export class PostResolver {
   constructor(private readonly postService: PostService) {}
 
   @Query(() => [Post], { description: 'Get all posts' })
-  public async posts(): Promise<Post[]> {
+  public async posts(): Promise<PostResponseDto[]> {
     return await this.postService.getAll()
   }
 
   @Query(() => Post, { description: 'Get post by id' })
-  public async post(@Arg('id') id: number): Promise<Post> {
+  public async post(@Arg('id') id: number): Promise<PostResponseDto> {
     return await this.postService.get(id)
   }
 
@@ -23,7 +24,7 @@ export class PostResolver {
   public async createPost(
     @Arg('file', () => GraphQLUpload) { createReadStream, filename }: FileUpload,
     @Arg('data') data: PostInput
-  ): Promise<Post> {
+  ): Promise<PostResponseDto> {
     let stream = createReadStream()
 
     const { ext, name } = parse(filename)
@@ -44,12 +45,12 @@ export class PostResolver {
   }
 
   @Mutation(() => Post, { description: 'Update post' })
-  public async updatePost(@Arg('id') id: number, @Arg('data') data: PostInput): Promise<Post> {
+  public async updatePost(@Arg('id') id: number, @Arg('data') data: PostInput): Promise<PostResponseDto> {
     return await this.postService.update(id, data)
   }
 
   @Mutation(() => Post, { description: 'Delete post' })
-  public async deletePost(@Arg('id') id: number): Promise<Post> {
+  public async deletePost(@Arg('id') id: number): Promise<PostResponseDto> {
     return await this.postService.delete(id)
   }
 }

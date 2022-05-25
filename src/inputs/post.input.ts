@@ -1,6 +1,7 @@
 import { InputType, Field } from 'type-graphql'
 import { Post } from '@entities/post.entity'
 import { IsNotEmpty } from 'class-validator'
+import { Category } from '@entities/category.entity'
 
 @InputType({ description: 'Post input' })
 export class PostInput implements Partial<Post> {
@@ -20,6 +21,7 @@ export class PostInput implements Partial<Post> {
 
   @Field(() => Number, { description: 'Post category id' })
   categoryId!: number
+  category!: Category
 
   @Field({ description: 'Post image url', nullable: true })
   img?: string

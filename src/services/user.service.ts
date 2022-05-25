@@ -1,11 +1,11 @@
 import { Service } from 'typedi'
 import { InjectRepository } from 'typeorm-typedi-extensions'
-import { User } from '@entities/user.entity'
 import { UserRepository } from '@repositories/user.repository'
 import { Response } from 'express'
-import { UserRegisterResponseDto } from '@dtos/user.dto'
+import { UserRegisterResponseDto, UserResponseDto } from '@dtos/user.dto'
 import { compare, hash } from 'bcryptjs'
 import { createAccessToken, createRefreshToken, setRefreshtoken } from '@utils/auth.util'
+import { UserInput, UserLoginInput, UserRegisterInput } from '@inputs/user.input'
 
 @Service()
 export class UserService {
@@ -14,11 +14,11 @@ export class UserService {
     private readonly userRepository: UserRepository
   ) {}
 
-  public async getAll(): Promise<User[]> {
+  public async getAll(): Promise<UserResponseDto[]> {
     return await this.userRepository.find()
   }
 
-  public async get(id: number): Promise<User> {
+  public async get(id: number): Promise<UserResponseDto> {
     const entity = await this.userRepository.findOne(id)
 
     if (!entity) throw new Error('User not found')
@@ -26,11 +26,11 @@ export class UserService {
     return entity
   }
 
-  public async create(data: Partial<User>): Promise<User> {
+  public async create(data: UserInput): Promise<UserResponseDto> {
     return await this.userRepository.save(data)
   }
 
-  public async update(id: number, data: Partial<User>): Promise<User> {
+  public async update(id: number, data: UserInput): Promise<UserResponseDto> {
     const entity = await this.userRepository.findOne(id)
 
     if (!entity) throw new Error('User not found')
@@ -40,7 +40,7 @@ export class UserService {
     return await this.userRepository.save(entity)
   }
 
-  public async delete(id: number): Promise<User> {
+  public async delete(id: number): Promise<UserResponseDto> {
     const entity = await this.userRepository.findOne(id)
 
     if (!entity) throw new Error('User not found')
@@ -50,7 +50,7 @@ export class UserService {
     return entity
   }
 
-  public async register(data: Partial<User>, res: Response): Promise<UserRegisterResponseDto> {
+  public async register(data: UserRegisterInput, res: Response): Promise<UserRegisterResponseDto> {
     const { password } = data
 
     data.password = await hash(password!, 12)
@@ -69,7 +69,7 @@ export class UserService {
     }
   }
 
-  public async login(data: Partial<User>, res: Response): Promise<UserRegisterResponseDto> {
+  public async login(data: UserLoginInput, res: Response): Promise<UserRegisterResponseDto> {
     const { email, password } = data
 
     const user = await this.userRepository.findOne({ where: { email } })
