@@ -13,11 +13,11 @@ Express TS & GraphQL based blog api
 
 ## Example GraphQL queries and mutations
 
-- Get all posts
+- Get all posts (can use optional pagination parameters)
 
 ```graphql
 query {
-  posts {
+  posts(limit: 10, page: 1, orderByFieldName: "title", orderByDirection: "ASC") {
     id
     title
     description
@@ -62,6 +62,30 @@ query {
 ```
 
 - Create post
+
+```graphql
+mutation {
+  createPost(data: { title: "Post 1", description: "Description 1", content: "Content 1", categoryId: 1 }) {
+    id
+    title
+    description
+    content
+    img
+    isActive
+    createdAt
+    updatedAt
+    category {
+      id
+      title
+      isActive
+      createdAt
+      updatedAt
+    }
+  }
+}
+```
+
+- Create post with file
 
 ```graphql
 mutation ($file: Upload!) {
