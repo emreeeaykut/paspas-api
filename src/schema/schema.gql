@@ -5,19 +5,58 @@
 
 type Query {
   # Get all posts
-  posts: [Post!]!
+  posts(
+    # Limit
+    limit: Int
+
+    # Page
+    page: Int = 0
+
+    # Order by field name
+    orderByFieldName: String
+
+    # Order by direction
+    orderByDirection: String
+  ): [Post!]!
+
+  # Get total users
+  postTotal: Float!
 
   # Get post by id
   post(id: Float!): Post!
 
   # Get all categories
-  categories: [Category!]!
+  categories(
+    # Limit
+    limit: Int
+
+    # Page
+    page: Int = 0
+
+    # Order by field name
+    orderByFieldName: String
+
+    # Order by direction
+    orderByDirection: String
+  ): [Category!]!
 
   # Get category by id
   category(id: Float!): Category!
 
   # Get all users
-  users: [User!]!
+  users(
+    # Limit
+    limit: Int
+
+    # Page
+    page: Int = 0
+
+    # Order by field name
+    orderByFieldName: String
+
+    # Order by direction
+    orderByDirection: String
+  ): [User!]!
 
   # Get user by id
   user(id: Float!): User!
@@ -112,7 +151,7 @@ type User {
 
 type Mutation {
   # Create post
-  createPost(data: PostInput!, file: Upload!): Post!
+  createPost(file: Upload, data: PostInput!): Post!
 
   # Update post
   updatePost(data: PostInput!, id: Float!): Post!
@@ -148,6 +187,9 @@ type Mutation {
   logoutUser: Boolean!
 }
 
+# The `Upload` scalar type represents a file upload.
+scalar Upload
+
 # Post input
 input PostInput {
   # Post title
@@ -168,9 +210,6 @@ input PostInput {
   # Post image url
   img: String
 }
-
-# The `Upload` scalar type represents a file upload.
-scalar Upload
 
 # Category input
 input CategoryInput {

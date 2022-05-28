@@ -1,18 +1,24 @@
-import { Arg, Ctx, Mutation, Query, Resolver, UseMiddleware } from 'type-graphql'
+import { Arg, Args, Ctx, Mutation, Query, Resolver, UseMiddleware } from 'type-graphql'
 import { UserService } from '@services/user.service'
 import { User } from '@entities/user.entity'
 import { UserInput, UserRegisterInput, UserLoginInput } from '@inputs/user.input'
 import { UserLoginResponseDto, UserRegisterResponseDto, UserResponseDto } from '@dtos/user.dto'
 import { AuthContext } from '@contexts/auth.context'
 import { isAuth } from '@middlewares/is-auth.middleware'
+import { PaginationArgs } from '@common/args/pagination.args'
 
 @Resolver(() => User)
 export class UserResolver {
   constructor(private readonly userService: UserService) {}
 
   @Query(() => [User], { description: 'Get all users' })
-  public async users(): Promise<UserResponseDto[]> {
-    return await this.userService.getAll()
+  public async users(@Args() pagination?: PaginationArgs): Promise<UserResponseDto[]> {
+    return await this.userService.getAll(pagination)
+  }
+
+  @Query(() => Number, { description: 'Get total users' })
+  public async postTotal(): Promise<Number> {
+    return await this.userService.getTotal()
   }
 
   @Query(() => User, { description: 'Get user by id' })

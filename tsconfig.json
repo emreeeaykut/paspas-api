@@ -31,7 +31,8 @@
       "@contexts/*": ["src/contexts/*"],
       "@middlewares/*": ["src/middlewares/*"],
       "@dtos/*": ["src/dtos/*"],
-      "@mappers/*": ["src/mappers/*"]
+      "@mappers/*": ["src/mappers/*"],
+      "@common/*": ["src/common/*"]
     }
   },
   "exclude": ["node_modules"],

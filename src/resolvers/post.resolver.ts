@@ -1,4 +1,4 @@
-import { Arg, Mutation, Query, Resolver } from 'type-graphql'
+import { Arg, Args, Mutation, Query, Resolver } from 'type-graphql'
 import { PostService } from '@services/post.service'
 import { Post } from '@entities/post.entity'
 import { PostInput } from '@inputs/post.input'
@@ -6,13 +6,20 @@ import { FileUpload, GraphQLUpload } from 'graphql-upload'
 import { join, parse } from 'path'
 import { createWriteStream } from 'fs'
 import { PostResponseDto } from '@dtos/post.dto'
+import { PaginationArgs } from '@common/args/pagination.args'
+
 @Resolver(() => Post)
 export class PostResolver {
   constructor(private readonly postService: PostService) {}
 
   @Query(() => [Post], { description: 'Get all posts' })
-  public async posts(): Promise<PostResponseDto[]> {
-    return await this.postService.getAll()
+  public async posts(@Args() pagination?: PaginationArgs): Promise<PostResponseDto[]> {
+    return await this.postService.getAll(pagination)
+  }
+
+  @Query(() => Number, { description: 'Get total posts' })
+  public async postTotal(): Promise<Number> {
+    return await this.postService.getTotal()
   }
 
   @Query(() => Post, { description: 'Get post by id' })
@@ -22,24 +29,26 @@ export class PostResolver {
 
   @Mutation(() => Post, { description: 'Create post' })
   public async createPost(
-    @Arg('file', () => GraphQLUpload) { createReadStream, filename }: FileUpload,
-    @Arg('data') data: PostInput
+    @Arg('data') data: PostInput,
+    @Arg('file', () => GraphQLUpload, { nullable: true }) file?: FileUpload
   ): Promise<PostResponseDto> {
-    let stream = createReadStream()
+    if (file) {
+      let stream = file.createReadStream()
 
-    const { ext, name } = parse(filename)
+      const { ext, name } = parse(file.filename)
 
-    const newName = name.replace(/([^a-z0-9 ]+)/gi, '-').replace(' ', '_') + '-' + Date.now() + ext
+      const newName = name.replace(/([^a-z0-9 ]+)/gi, '-').replace(' ', '_') + '-' + Date.now() + ext
 
-    const serverFile = join(__dirname, `/../uploads/${newName}`)
+      const serverFile = join(__dirname, `/../uploads/${newName}`)
 
-    let writeStream = createWriteStream(serverFile)
+      let writeStream = createWriteStream(serverFile)
 
-    stream.pipe(writeStream)
+      stream.pipe(writeStream)
 
-    const imgUrl = `/uploads/${newName}`
+      const imgUrl = `/uploads/${newName}`
 
-    data.img = imgUrl
+      data.img = imgUrl
+    }
 
     return await this.postService.create(data)
   }

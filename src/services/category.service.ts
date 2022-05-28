@@ -4,6 +4,7 @@ import { CategoryRepository } from '@repositories/category.repository'
 import { CategoryResponseDto } from 'src/dtos/category.dto'
 import { CategoryMapper } from 'src/mappers/category.mapper'
 import { CategoryInput } from '@inputs/category.input'
+import { PaginationArgs } from '@common/args/pagination.args'
 
 @Service()
 export class CategoryService {
@@ -12,10 +13,14 @@ export class CategoryService {
     private readonly categoryRepository: CategoryRepository
   ) {}
 
-  public async getAll(): Promise<CategoryResponseDto[]> {
-    const entities = await this.categoryRepository.find()
+  public async getAll(pagination?: PaginationArgs): Promise<CategoryResponseDto[]> {
+    const entities = await this.categoryRepository.getAll(pagination)
 
     return await Promise.all(entities.map(CategoryMapper.toDto))
+  }
+
+  public async getTotal(): Promise<number> {
+    return await this.categoryRepository.count()
   }
 
   public async get(id: number): Promise<CategoryResponseDto> {

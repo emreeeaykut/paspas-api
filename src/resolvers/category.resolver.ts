@@ -1,16 +1,22 @@
-import { Arg, Mutation, Query, Resolver } from 'type-graphql'
+import { Arg, Args, Mutation, Query, Resolver } from 'type-graphql'
 import { CategoryService } from '@services/category.service'
 import { Category } from '@entities/category.entity'
 import { CategoryInput } from '@inputs/category.input'
 import { CategoryResponseDto } from 'src/dtos/category.dto'
+import { PaginationArgs } from '@common/args/pagination.args'
 
 @Resolver(() => Category)
 export class CategoryResolver {
   constructor(private readonly categoryService: CategoryService) {}
 
   @Query(() => [Category], { description: 'Get all categories' })
-  public async categories(): Promise<CategoryResponseDto[]> {
-    return await this.categoryService.getAll()
+  public async categories(@Args() pagination?: PaginationArgs): Promise<CategoryResponseDto[]> {
+    return await this.categoryService.getAll(pagination)
+  }
+
+  @Query(() => Number, { description: 'Get total categories' })
+  public async postTotal(): Promise<Number> {
+    return await this.categoryService.getTotal()
   }
 
   @Query(() => Category, { description: 'Get category by id' })

@@ -37,7 +37,8 @@
     "@contexts": "dist/contexts",
     "@middlewares": "dist/middlewares",
     "@dtos": "dist/dtos",
-    "@mappers": "dist/mappers"
+    "@mappers": "dist/mappers",
+    "@common": "dist/common"
   },
   "dependencies": {
     "apollo-server-core": "^3.6.7",

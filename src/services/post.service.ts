@@ -5,6 +5,7 @@ import { CategoryRepository } from '@repositories/category.repository'
 import { PostResponseDto } from '@dtos/post.dto'
 import { PostMapper } from '@mappers/post.mapper'
 import { PostInput } from '@inputs/post.input'
+import { PaginationArgs } from '@common/args/pagination.args'
 
 @Service()
 export class PostService {
@@ -15,10 +16,14 @@ export class PostService {
     private readonly categoryRepository: CategoryRepository
   ) {}
 
-  public async getAll(): Promise<PostResponseDto[]> {
-    const entities = await this.postRepository.find({ relations: ['category'] })
+  public async getAll(pagination?: PaginationArgs): Promise<PostResponseDto[]> {
+    const entities = await this.postRepository.getAll(pagination)
 
     return await Promise.all(entities.map(PostMapper.toDto))
+  }
+
+  public async getTotal(): Promise<number> {
+    return await this.postRepository.count()
   }
 
   public async get(id: number): Promise<PostResponseDto> {
