@@ -1,5 +1,5 @@
 import 'reflect-metadata'
-import common from '@config/common'
+import env from '@src/config/env'
 import {
   ApolloServerPluginLandingPageDisabled,
   ApolloServerPluginLandingPageGraphQLPlayground,
@@ -8,9 +8,9 @@ import { ApolloServer } from 'apollo-server-express'
 import { buildSchema } from 'type-graphql'
 import { useContainer } from 'typeorm'
 import { Container } from 'typeorm-typedi-extensions'
-import { PostResolver } from '@resolvers/post.resolver'
-import { CategoryResolver } from '@resolvers/category.resolver'
-import { UserResolver } from '@resolvers/user.resolver'
+import { PostResolver } from '@src/modules/post/post.resolver'
+import { CategoryResolver } from '@src/modules/category/category.resolver'
+import { UserResolver } from '@src/modules/user/user.resolver'
 
 export default async () => {
   useContainer(Container)
@@ -29,9 +29,9 @@ export default async () => {
   const apolloServer = new ApolloServer({
     schema,
     csrfPrevention: true,
-    introspection: common.env !== 'production',
+    introspection: env.nodeEnv !== 'production',
     plugins: [
-      common.env === 'production'
+      env.nodeEnv === 'production'
         ? ApolloServerPluginLandingPageDisabled()
         : ApolloServerPluginLandingPageGraphQLPlayground(),
     ],

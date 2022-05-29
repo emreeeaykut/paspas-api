@@ -1,6 +1,6 @@
 import Redis from 'ioredis'
-import common from './common'
+import env from './env'
 
-const redis = new Redis(`rediss://:${common.redisPass}@${common.redisHost}:${common.redisPort}`)
+const redis = new Redis(`rediss://:${env.redisPass}@${env.redisHost}:${env.redisPort}`)
 
 export default redis

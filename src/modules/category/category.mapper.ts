@@ -1,6 +1,6 @@
-import { Category } from '@entities/category.entity'
-import { CategoryInput } from '@inputs/category.input'
-import { CategoryResponseDto } from 'src/dtos/category.dto'
+import { Category } from './category.entity'
+import { CategoryInput } from './category.input'
+import { CategoryResponseDto } from './category.dto'
 
 export class CategoryMapper {
   public static toDto(entity: Category): CategoryResponseDto {

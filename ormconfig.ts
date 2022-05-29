@@ -14,15 +14,10 @@ export default [
     ssl: {
       rejectUnauthorized: false,
     },
-    entities: [`${baseUrl}/entities/**/*{.ts,.js}`],
+    entities: [`${baseUrl}/modules/**/*{.ts,.js}`],
     migrations: [`${baseUrl}/database/migrations/**/*{.ts,.js}`],
-    subscribers: [`${baseUrl}/database/subscribers/**/*{.ts,.js}`],
-    seeds: [`${baseUrl}/database/seeds/**/*{.ts,.js}`],
-    factories: [`${baseUrl}/database/factories/**/*{.ts,.js}`],
     cli: {
-      entitiesDir: 'src/entities/',
       migrationsDir: 'src/database/migrations/',
-      subscribersDir: 'src/database/subscribers/',
     },
   },
 ]

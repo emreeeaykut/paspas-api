@@ -1,6 +1,6 @@
 import { InputType, Field } from 'type-graphql'
-import { Category } from '@entities/category.entity'
 import { IsNotEmpty } from 'class-validator'
+import { Category } from './category.entity'
 
 @InputType({ description: 'Category input' })
 export class CategoryInput implements Partial<Category> {

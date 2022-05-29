@@ -1,13 +1,13 @@
 import { Service } from 'typedi'
 import { InjectRepository } from 'typeorm-typedi-extensions'
-import { UserRepository } from '@repositories/user.repository'
+import { UserRepository } from './user.repository'
 import { Response } from 'express'
-import { UserRegisterResponseDto, UserResponseDto } from '@dtos/user.dto'
+import { UserRegisterResponseDto, UserResponseDto } from './user.dto'
 import { compare, hash } from 'bcryptjs'
-import { createAccessToken, createRefreshToken, setRefreshtoken } from '@utils/auth.util'
-import { UserInput, UserLoginInput, UserRegisterInput } from '@inputs/user.input'
-import { UserMapper } from '@mappers/user.mapper'
-import { PaginationArgs } from '@common/args/pagination.args'
+import { createAccessToken, createRefreshToken, setRefreshtoken } from '@src/utils/auth.util'
+import { UserInput, UserLoginInput, UserRegisterInput } from './user.input'
+import { UserMapper } from './user.mapper'
+import { PaginationArgs } from '@src/common/args/pagination.args'
 
 @Service()
 export class UserService {

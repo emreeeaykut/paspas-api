@@ -1,6 +1,6 @@
-import { User } from '@entities/user.entity'
-import { UserInput } from '@inputs/user.input'
-import { UserResponseDto } from 'src/dtos/user.dto'
+import { User } from './user.entity'
+import { UserInput } from './user.input'
+import { UserResponseDto } from './user.dto'
 
 export class UserMapper {
   public static toDto(entity: User): UserResponseDto {

@@ -1,16 +1,16 @@
 import express from 'express'
 import helmet from 'helmet'
 import compression from 'compression'
-import common from '@config/common'
-import cors from '@config/cors'
+import env from '@src/config/env'
+import cors from '@src/config/cors'
+import session from '@src/config/session'
 import cookieParser from 'cookie-parser'
-import session from '@config/session'
 import apollo from './apollo'
 import logger from './utils/logger.util'
-import { databaseConnection } from '@config/database'
+import { databaseConnection } from '@src/config/database'
 import { graphqlUploadExpress } from 'graphql-upload'
 import { join } from 'path'
-import { handleRefreshToken } from '@utils/auth.util'
+import { handleRefreshToken } from '@src/utils/auth.util'
 
 const app = express()
 
@@ -48,7 +48,7 @@ const prepareServer = async () => {
 
     await apolloServer.start()
 
-    apolloServer.applyMiddleware({ app, path: common.graphqlPath })
+    apolloServer.applyMiddleware({ app, path: env.graphqlPath })
 
     await databaseConnection()
   } catch (err) {

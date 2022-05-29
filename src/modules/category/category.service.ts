@@ -1,10 +1,10 @@
 import { Service } from 'typedi'
 import { InjectRepository } from 'typeorm-typedi-extensions'
-import { CategoryRepository } from '@repositories/category.repository'
-import { CategoryResponseDto } from 'src/dtos/category.dto'
-import { CategoryMapper } from 'src/mappers/category.mapper'
-import { CategoryInput } from '@inputs/category.input'
-import { PaginationArgs } from '@common/args/pagination.args'
+import { CategoryRepository } from './category.repository'
+import { CategoryResponseDto } from './category.dto'
+import { CategoryMapper } from './category.mapper'
+import { CategoryInput } from './category.input'
+import { PaginationArgs } from '@src/common/args/pagination.args'
 
 @Service()
 export class CategoryService {

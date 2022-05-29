@@ -1,6 +1,6 @@
 import { Field, ID, ObjectType } from 'type-graphql'
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
-import { BaseEntity } from './base.entity'
+import { BaseEntity } from '@src/common/entities/base.entity'
 
 @ObjectType({ description: 'User entity' })
 @Entity()

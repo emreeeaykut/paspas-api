@@ -1,5 +1,5 @@
-import { Post } from '@entities/post.entity'
 import { Field, GraphQLTimestamp, ObjectType } from 'type-graphql'
+import { Post } from '@src/modules/post/post.entity'
 
 @ObjectType({ description: 'Category response dto' })
 export class CategoryResponseDto {

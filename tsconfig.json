@@ -17,22 +17,7 @@
     "allowJs": true,
     "noImplicitAny": false,
     "paths": {
-      "@config/*": ["src/config/*"],
-      "@migrations/*": ["src/database/migrations/*"],
-      "@subscribers/*": ["src/database/subscribers/*"],
-      "@seeds/*": ["src/database/seeds/*"],
-      "@factories/*": ["src/database/factories/*"],
-      "@entities/*": ["src/entities/*"],
-      "@inputs/*": ["src/inputs/*"],
-      "@repositories/*": ["src/repositories/*"],
-      "@resolvers/*": ["src/resolvers/*"],
-      "@services/*": ["src/services/*"],
-      "@utils/*": ["src/utils/*"],
-      "@contexts/*": ["src/contexts/*"],
-      "@middlewares/*": ["src/middlewares/*"],
-      "@dtos/*": ["src/dtos/*"],
-      "@mappers/*": ["src/mappers/*"],
-      "@common/*": ["src/common/*"]
+      "@src/*": ["src/*"]
     }
   },
   "exclude": ["node_modules"],

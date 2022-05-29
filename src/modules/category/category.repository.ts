@@ -1,11 +1,11 @@
 import { Service } from 'typedi'
 import { EntityRepository, Repository } from 'typeorm'
-import { Post } from '@entities/post.entity'
-import { PaginationArgs } from '@common/args/pagination.args'
+import { Category } from './category.entity'
+import { PaginationArgs } from '@src/common/args/pagination.args'
 
 @Service()
-@EntityRepository(Post)
-export class PostRepository extends Repository<Post> {
+@EntityRepository(Category)
+export class CategoryRepository extends Repository<Category> {
   public async getAll(pagination?: PaginationArgs) {
     const take = pagination?.limit || 10
     const page = pagination?.page || 1
@@ -13,11 +13,10 @@ export class PostRepository extends Repository<Post> {
     const orderByFieldName = pagination?.orderByFieldName || 'id'
     const orderByDirection = pagination?.orderByDirection || 'ASC'
 
-    const result = await this.createQueryBuilder('post')
-      .leftJoinAndSelect('post.category', 'category')
+    const result = await this.createQueryBuilder('category')
       .take(take)
       .skip(skip)
-      .orderBy(`post.${orderByFieldName}`, orderByDirection)
+      .orderBy(`category.${orderByFieldName}`, orderByDirection)
       .getMany()
 
     return result

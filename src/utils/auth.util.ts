@@ -1,18 +1,18 @@
 import { Request, Response } from 'express'
 import { sign, verify } from 'jsonwebtoken'
-import common from '@config/common'
-import { User } from '@entities/user.entity'
+import env from '@src/config/env'
+import { User } from '@src/modules/user/user.entity'
 import { getRepository } from 'typeorm'
 
 export const createAccessToken = (user: User) => {
-  return sign({ user }, common.accessTokenSecret!, {
-    expiresIn: common.accessTokenExpiresIn,
+  return sign({ user }, env.accessTokenSecret!, {
+    expiresIn: env.accessTokenExpiresIn,
   })
 }
 
 export const createRefreshToken = (user: User) => {
-  return sign({ user }, common.refreshTokenSecret!, {
-    expiresIn: common.refreshTokenExpiresIn,
+  return sign({ user }, env.refreshTokenSecret!, {
+    expiresIn: env.refreshTokenExpiresIn,
   })
 }
 
@@ -31,7 +31,7 @@ export const handleRefreshToken = async (req: Request, res: Response) => {
   let payload = null
 
   try {
-    payload = verify(token, common.refreshTokenSecret!) as any
+    payload = verify(token, env.refreshTokenSecret!) as any
   } catch (err) {
     return res.send({ status: false, accessToken: '' })
   }

@@ -1,11 +1,11 @@
 import { Service } from 'typedi'
 import { InjectRepository } from 'typeorm-typedi-extensions'
-import { PostRepository } from '@repositories/post.repository'
-import { CategoryRepository } from '@repositories/category.repository'
-import { PostResponseDto } from '@dtos/post.dto'
-import { PostMapper } from '@mappers/post.mapper'
-import { PostInput } from '@inputs/post.input'
-import { PaginationArgs } from '@common/args/pagination.args'
+import { PostRepository } from './post.repository'
+import { CategoryRepository } from '@src/modules/category/category.repository'
+import { PostResponseDto } from './post.dto'
+import { PostMapper } from './post.mapper'
+import { PostInput } from './post.input'
+import { PaginationArgs } from '@src/common/args/pagination.args'
 
 @Service()
 export class PostService {

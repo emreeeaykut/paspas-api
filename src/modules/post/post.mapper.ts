@@ -1,8 +1,7 @@
-import { Category } from '@entities/category.entity'
-import { Post } from '@entities/post.entity'
-import { PostInput } from '@inputs/post.input'
-import { PostResponseDto } from 'src/dtos/post.dto'
-import { CategoryMapper } from './category.mapper'
+import { Post } from './post.entity'
+import { PostInput } from './post.input'
+import { PostResponseDto } from './post.dto'
+import { CategoryMapper } from '@src/modules/category/category.mapper'
 
 export class PostMapper {
   public static toDto(entity: Post): PostResponseDto {

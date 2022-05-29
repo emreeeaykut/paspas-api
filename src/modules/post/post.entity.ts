@@ -1,7 +1,7 @@
 import { Field, ID, ObjectType } from 'type-graphql'
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, RelationId } from 'typeorm'
-import { BaseEntity } from './base.entity'
-import { Category } from './category.entity'
+import { BaseEntity } from '@src/common/entities/base.entity'
+import { Category } from '@src/modules/category/category.entity'
 
 @ObjectType({ description: 'Post entity' })
 @Entity()

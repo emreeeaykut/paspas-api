@@ -1,4 +1,4 @@
-import { User } from '@entities/user.entity'
+import { User } from '@src/modules/user/user.entity'
 import { Request, Response } from 'express'
 
 export interface AuthContext {

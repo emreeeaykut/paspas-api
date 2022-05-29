@@ -22,24 +22,6 @@
     "seed": "yarn run typeorm-seeding seed",
     "db:reset": "yarn schema:drop && yarn schema:sync && yarn seed"
   },
-  "_moduleAliases": {
-    "@config": "dist/config",
-    "@migrations": "dist/migrations",
-    "@subscribers": "dist/subscribers",
-    "@seeds": "dist/seeds",
-    "@factories": "dist/factories",
-    "@entities": "dist/entities",
-    "@inputs": "dist/inputs",
-    "@repositories": "dist/repositories",
-    "@resolvers": "dist/resolvers",
-    "@services": "dist/services",
-    "@utils": "dist/utils",
-    "@contexts": "dist/contexts",
-    "@middlewares": "dist/middlewares",
-    "@dtos": "dist/dtos",
-    "@mappers": "dist/mappers",
-    "@common": "dist/common"
-  },
   "dependencies": {
     "apollo-server-core": "^3.6.7",
     "apollo-server-express": "^3.6.7",
@@ -57,7 +39,6 @@
     "helmet": "^5.0.2",
     "ioredis": "^5.0.4",
     "jsonwebtoken": "^8.5.1",
-    "module-alias": "^2.2.2",
     "ncp": "^2.0.0",
     "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13",

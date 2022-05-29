@@ -1,12 +1,12 @@
 import { Arg, Args, Mutation, Query, Resolver } from 'type-graphql'
-import { PostService } from '@services/post.service'
-import { Post } from '@entities/post.entity'
-import { PostInput } from '@inputs/post.input'
+import { PostService } from './post.service'
+import { Post } from './post.entity'
+import { PostInput } from './post.input'
 import { FileUpload, GraphQLUpload } from 'graphql-upload'
 import { join, parse } from 'path'
 import { createWriteStream } from 'fs'
-import { PostResponseDto } from '@dtos/post.dto'
-import { PaginationArgs } from '@common/args/pagination.args'
+import { PostResponseDto } from './post.dto'
+import { PaginationArgs } from '@src/common/args/pagination.args'
 
 @Resolver(() => Post)
 export class PostResolver {

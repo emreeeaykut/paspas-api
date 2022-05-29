@@ -1,9 +1,9 @@
 import { Arg, Args, Mutation, Query, Resolver } from 'type-graphql'
-import { CategoryService } from '@services/category.service'
-import { Category } from '@entities/category.entity'
-import { CategoryInput } from '@inputs/category.input'
-import { CategoryResponseDto } from 'src/dtos/category.dto'
-import { PaginationArgs } from '@common/args/pagination.args'
+import { CategoryService } from './category.service'
+import { Category } from './category.entity'
+import { CategoryInput } from './category.input'
+import { CategoryResponseDto } from './category.dto'
+import { PaginationArgs } from '@src/common/args/pagination.args'
 
 @Resolver(() => Category)
 export class CategoryResolver {

@@ -1,5 +1,5 @@
-import { User } from '@entities/user.entity'
 import { Field, GraphQLTimestamp, ObjectType } from 'type-graphql'
+import { User } from './user.entity'
 
 @ObjectType({ description: 'User response dto' })
 export class UserResponseDto {

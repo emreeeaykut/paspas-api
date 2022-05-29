@@ -1,11 +1,11 @@
 import { Arg, Args, Ctx, Mutation, Query, Resolver, UseMiddleware } from 'type-graphql'
-import { UserService } from '@services/user.service'
-import { User } from '@entities/user.entity'
-import { UserInput, UserRegisterInput, UserLoginInput } from '@inputs/user.input'
-import { UserLoginResponseDto, UserRegisterResponseDto, UserResponseDto } from '@dtos/user.dto'
-import { AuthContext } from '@contexts/auth.context'
-import { isAuth } from '@middlewares/is-auth.middleware'
-import { PaginationArgs } from '@common/args/pagination.args'
+import { UserService } from './user.service'
+import { User } from './user.entity'
+import { UserInput, UserRegisterInput, UserLoginInput } from './user.input'
+import { UserLoginResponseDto, UserRegisterResponseDto, UserResponseDto } from './user.dto'
+import { AuthContext } from '@src/contexts/auth.context'
+import { isAuth } from '@src/middlewares/is-auth.middleware'
+import { PaginationArgs } from '@src/common/args/pagination.args'
 
 @Resolver(() => User)
 export class UserResolver {

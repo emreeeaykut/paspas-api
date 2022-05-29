@@ -1,7 +1,7 @@
+import env from '@src/config/env'
 import { MiddlewareFn } from 'type-graphql'
 import { verify } from 'jsonwebtoken'
-import common from '@config/common'
-import { AuthContext } from '@contexts/auth.context'
+import { AuthContext } from '@src/contexts/auth.context'
 
 export const isAuth: MiddlewareFn<AuthContext> = ({ context }, next) => {
   const auth = context.req.headers['authorization']
@@ -13,7 +13,7 @@ export const isAuth: MiddlewareFn<AuthContext> = ({ context }, next) => {
   try {
     const token = auth.split(' ')[1]
 
-    const payload = verify(token, common.accessTokenSecret!)
+    const payload = verify(token, env.accessTokenSecret!)
 
     context.payload = payload as any
   } catch (err: any) {

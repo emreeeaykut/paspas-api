@@ -1,11 +1,11 @@
+import env from '@src/config/env'
 import winston from 'winston'
-import common from '@config/common'
 
 const options: winston.LoggerOptions = {
   format: winston.format.combine(winston.format.timestamp(), winston.format.json()),
   transports: [
     new winston.transports.Console({
-      level: common.env === 'production' ? 'error' : 'debug',
+      level: env.nodeEnv === 'production' ? 'error' : 'debug',
       format: winston.format.cli(),
     }),
     new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),
@@ -15,7 +15,7 @@ const options: winston.LoggerOptions = {
 
 const logger = winston.createLogger(options)
 
-if (common.env !== 'production') {
+if (env.nodeEnv !== 'production') {
   logger.debug('Logging initialized at debug level')
 }
 
